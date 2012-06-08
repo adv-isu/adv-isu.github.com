@@ -22,12 +22,14 @@
           display: none;
         }
     </style>
-    <script src="http://openlayers.org/dev/OpenLayers.js" type="text/javascript"></script>
+    <script src="http://openlayers.org/api/2.11/OpenLayers.js" type="text/javascript"></script>
     <script type="text/javascript">
         var map;
 
         function init(){
+          
             document.forms[0].theOffendingInput.focus();
+            
             map = new OpenLayers.Map({
               div: 'map',
               controls: [
