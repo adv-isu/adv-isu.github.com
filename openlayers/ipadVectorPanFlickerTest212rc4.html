@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <title>OpenLayers: Vector Features</title>
+    <link rel="stylesheet" href="http://openlayers.org/api/2.12-rc4/theme/default/style.css" type="text/css">
+    <link rel="stylesheet" href="style.css" type="text/css">
+    <style>
+        #map {
+            background : #7391ad;
+            position: absolute;
+            top: 0px;
+            bottom: 0px;
+            left: 0px;
+            right: 0px;
+            width: auto;
+            height: auto;
+        }
+        .hidden {
+          display: none;
+        }
+    </style>
+    <script src="http://openlayers.org/api/2.12-rc4/OpenLayers.js" type="text/javascript"></script>
+    <script type="text/javascript">
+        var map;
+
+        function init(){
+          
+            document.forms[0].theOffendingInput.focus();
+            
+            map = new OpenLayers.Map({
+              div: 'map',
+              controls: [
+                new OpenLayers.Control.TouchNavigation({
+                    dragPanOptions: {
+                        enableKinetic: true
+                    }
+                })
+              ]
+            });
+            var layer = new OpenLayers.Layer.WMS( "OpenLayers WMS",
+                    "http://vmap0.tiles.osgeo.org/wms/vmap0", {layers: 'basic'} );
+            map.addLayer(layer);
+
+            var vectorLayer = new OpenLayers.Layer.Vector("Simple Geometry", {});
+
+            // create a point feature
+            var point = new OpenLayers.Geometry.Point(-111.04, 45.68);
+
+            // create a polygon feature from a linear ring of points
+            var pointList = [];
+            for(var p=0; p<1000; ++p) {
+                var a = p * (2 * Math.PI) / 1001;
+                var r = Math.random(1) + 1;
+                var newPoint = new OpenLayers.Geometry.Point(point.x + (r * Math.cos(a)),
+                                                             point.y + (r * Math.sin(a)));
+                pointList.push(newPoint);
+            }
+            pointList.push(pointList[0]);
+
+            var linearRing = new OpenLayers.Geometry.LinearRing(pointList);
+            var polygonFeature = new OpenLayers.Feature.Vector(
+                new OpenLayers.Geometry.Polygon([linearRing]));
+
+
+            map.addLayer(vectorLayer);
+            map.setCenter(new OpenLayers.LonLat(point.x, point.y), 5);
+            vectorLayer.addFeatures([polygonFeature]);
+        }
+    </script>
+  </head>
+  <body onload="init()">
+      <form>
+          <input type="text" name="theOffendingInput"/>
+      </form>
+<div id="map"></div>
+
+  </body>
+</html>
+
+
