@@ -49,8 +49,8 @@
 
             // create a polygon feature from a linear ring of points
             var pointList = [];
-            for(var p=0; p<100; ++p) {
-                var a = p * (2 * Math.PI) / 101;
+            for(var p=0; p<1000; ++p) {
+                var a = p * (2 * Math.PI) / 1001;
                 var r = Math.random(1) + 1;
                 var newPoint = new OpenLayers.Geometry.Point(point.x + (r * Math.cos(a)),
                                                              point.y + (r * Math.sin(a)));
