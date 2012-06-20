@@ -50,9 +50,15 @@
             panel1.addControls([
                 new OpenLayers.Control.Button({
                     trigger: function() {
-                      alert("red button clicked!");
+                      alert("first red button clicked!");
+                    }
+                }),
+                new OpenLayers.Control.Button({
+                    trigger: function() {
+                      alert("second red button clicked!");
                     }
                 })
+                
             ]);
             map.addControl(panel1);
             
