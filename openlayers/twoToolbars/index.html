@@ -6,10 +6,23 @@
     <meta name="apple-mobile-web-app-capable" content="yes">
     <link rel="stylesheet" href="http://www.openlayers.org/dev/theme/default/style.css" type="text/css">
     <link rel="stylesheet" href="http://www.openlayers.org/dev/examples/style.css" type="text/css">
-    <title>Two Toolbars</title>
+    <title>Buttons in Two Panels</title>
     <style type='text/css'>    
         #map {
             height: 512px;
+        }
+        .olButton {
+          width: 30px;
+          height: 30px;
+          background-color: gray; 
+        }
+        .panel1 {
+          bottom: 0px;
+          left: 0px;
+        }
+        .panel2 {
+          bottom: 0px;
+          right: 0px;
         }
     </style>    
     <script src="http://www.openlayers.org/dev/OpenLayers.js"></script>
@@ -17,21 +30,36 @@
         var lon = 5;
         var lat = 40;
         var zoom = 5;
-        var map, layer1, layer2, panel1, panel2;
+        var map, layer1, panel1, panel2;
 
         function init() {
             map = new OpenLayers.Map( 'map', { controls: [new OpenLayers.Control.PanZoom()] } );
             layer1 = new OpenLayers.Layer.WMS( "OpenLayers WMS", 
                     "http://vmap0.tiles.osgeo.org/wms/vmap0", {layers: 'basic'} );
             map.addLayer(layer1);
-            
-            layer2 = new OpenLayers.Layer.Vector();
-            map.addLayer(layer2);
 
-            panel1 = new OpenLayers.Control.NavToolbar();
+            panel1 = new OpenLayers.Control.Panel({
+                displayClass: "panel1" 
+            });
+            panel1.addControls([
+                new OpenLayers.Control.Button({
+                    trigger: function() {
+                      alert("button in panel 1 clicked!");
+                    }
+                })
+            ]);
             map.addControl(panel1);
             
-            panel2 = new OpenLayers.Control.EditingToolbar(layer2);
+            panel2 = new OpenLayers.Control.Panel({
+                displayClass: "panel2" 
+            });
+            panel2.addControls([
+                new OpenLayers.Control.Button({
+                    trigger: function() {
+                      alert("button in panel 2 clicked!");
+                    }
+                })
+            ]);
             map.addControl(panel2);
 
             map.setCenter(new OpenLayers.LonLat(lon, lat), zoom);
@@ -39,7 +67,7 @@
     </script>
   </head>
   <body onload="init()">
-    <h1 id="title">Two Toolbars</h1>
+    <h1 id="title">Buttons in Two Panels</h1>
     <div id="tags">
         navigation toolbar, editing toolbar, basic
     </div>
