@@ -33,7 +33,7 @@
         var map, layer1, panel1, panel2;
 
         function init() {
-            map = new OpenLayers.Map( 'map', { controls: [new OpenLayers.Control.PanZoom()] } );
+            map = new OpenLayers.Map( 'map', {} );
             layer1 = new OpenLayers.Layer.WMS( "OpenLayers WMS", 
                     "http://vmap0.tiles.osgeo.org/wms/vmap0", {layers: 'basic'} );
             map.addLayer(layer1);
@@ -44,7 +44,7 @@
             panel1.addControls([
                 new OpenLayers.Control.Button({
                     trigger: function() {
-                      alert("button in panel 1 clicked!");
+                      alert("button in left panel clicked!");
                     }
                 })
             ]);
@@ -56,7 +56,7 @@
             panel2.addControls([
                 new OpenLayers.Control.Button({
                     trigger: function() {
-                      alert("button in panel 2 clicked!");
+                      alert("button in right panel clicked!");
                     }
                 })
             ]);
@@ -72,8 +72,8 @@
         navigation toolbar, editing toolbar, basic
     </div>
     <p id="shortdesc">
-       Demo the NavToolbar, a subclass of Control.Panel which shows icons for
-       navigation.
+       Click the gray buttons in the lower left and right corners.
+       On an iPad, 
     </p> 
     <div id="map" class="smallmap"></div>
   </body>
