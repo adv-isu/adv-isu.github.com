@@ -9,22 +9,28 @@
     <title>Buttons in Two Panels</title>
     <style type='text/css'>    
         #map {
-            height: 512px;
+            height: 200px;
+            width: 200px;
         }
         .olButton {
           width: 30px;
           height: 30px;
-          background-color: gray; 
         }
-        .panel1 {
+        .redPanel {
           bottom: 0px;
           left: 0px;
         }
-        .panel2 {
+        .bluePanel {
           bottom: 0px;
           right: 0px;
         }
-    </style>    
+        .redPanel .olButton {
+            background-color: red;  
+        }
+        .bluePanel .olButton {
+            background-color: blue;  
+        }
+    </style>
     <script src="http://www.openlayers.org/dev/OpenLayers.js"></script>
     <script type="text/javascript">
         var lon = 5;
@@ -39,24 +45,24 @@
             map.addLayer(layer1);
 
             panel1 = new OpenLayers.Control.Panel({
-                displayClass: "panel1" 
+                displayClass: "redPanel" 
             });
             panel1.addControls([
                 new OpenLayers.Control.Button({
                     trigger: function() {
-                      alert("button in left panel clicked!");
+                      alert("red button clicked!");
                     }
                 })
             ]);
             map.addControl(panel1);
             
             panel2 = new OpenLayers.Control.Panel({
-                displayClass: "panel2" 
+                displayClass: "bluePanel" 
             });
             panel2.addControls([
                 new OpenLayers.Control.Button({
                     trigger: function() {
-                      alert("button in right panel clicked!");
+                      alert("blue button clicked!");
                     }
                 })
             ]);
@@ -72,8 +78,14 @@
         navigation toolbar, editing toolbar, basic
     </div>
     <p id="shortdesc">
-       Click the gray buttons in the lower left and right corners.
-       On an iPad, 
+       Click the colored buttons in the lower left and right corners.
+       On a desktop browser, they behave as expected.
+       On an iOS device, clicking the blue button immediately after
+       the red button shows the alert, "red button clicked!".  This indicates
+       that the wrong button's trigger() method is being called.  Since the
+       buttons are in two different panels, it's probaby not a bug in the
+       Panel code.  Rather, it's probably a bug somewhere in
+       OpenLayers/Events/buttonclick.js having to do with touch events.
     </p> 
     <div id="map" class="smallmap"></div>
   </body>
