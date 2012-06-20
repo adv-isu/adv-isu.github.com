@@ -91,12 +91,12 @@
     <p id="shortdesc">
        Click the colored buttons from left to right.
        On a desktop browser, they behave as expected.
-       On an iOS device, due to a missing "delete this.startEvt" in
-       buttonclick.js, clicking the second button immediately after the first
-       will cause the buttonclick event to be delivered to the first button,
-       displaying the message "first red button clicked!"  These buttons are in
-       the same panel; the blue button, which is in is own panel, behaves
-       similarly.
+       On an iOS device, due to extraneous touchstart and touchend events sent
+       by the browser when a touchend handler invokes window.alert(), clicking
+       the second button immediately after the first will cause the buttonclick
+       event to be delivered to the first button, displaying the message
+       "first red button clicked!"  These buttons are in the same panel;
+       the blue button, which is in is own panel, behaves similarly.
     </p> 
     <div id="map" class="smallmap"></div>
   </body>
