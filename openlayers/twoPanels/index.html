@@ -13,12 +13,17 @@
             width: 200px;
         }
         .olButton {
+          margin: 2px;
           width: 30px;
           height: 30px;
         }
         .redPanel {
           bottom: 0px;
           left: 0px;
+          width: auto;
+        }
+        .redPanel div {
+            float: left;
         }
         .bluePanel {
           bottom: 0px;
@@ -87,7 +92,7 @@
        Click the colored buttons in the lower left and right corners.
        On a desktop browser, they behave as expected.
        On an iOS device, clicking the blue button immediately after
-       the red button shows the alert, "red button clicked!".  This indicates
+       a red button shows the alert, "red button clicked!".  This indicates
        that the wrong button's trigger() method is being called.  Since the
        buttons are in two different panels, it's probaby not a bug in the
        Panel code.  Rather, it's probably a bug somewhere in
