@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <link rel="stylesheet" href="http://www.openlayers.org/dev/theme/default/style.css" type="text/css">
+    <link rel="stylesheet" href="http://www.openlayers.org/dev/examples/style.css" type="text/css">
+    <title>Two Toolbars</title>
+    <style type='text/css'>    
+        #map {
+            height: 512px;
+        }
+    </style>    
+    <script src="http://www.openlayers.org/dev/OpenLayers.js"></script>
+    <script type="text/javascript">
+        var lon = 5;
+        var lat = 40;
+        var zoom = 5;
+        var map, layer1, layer2, panel1, panel2;
+
+        function init() {
+            map = new OpenLayers.Map( 'map', { controls: [new OpenLayers.Control.PanZoom()] } );
+            layer1 = new OpenLayers.Layer.WMS( "OpenLayers WMS", 
+                    "http://vmap0.tiles.osgeo.org/wms/vmap0", {layers: 'basic'} );
+            map.addLayer(layer1);
+            
+            layer2 = new OpenLayers.Layer.Vector();
+            map.addLayer(layer2);
+
+            panel1 = new OpenLayers.Control.NavToolbar();
+            map.addControl(panel1);
+            
+            panel2 = new OpenLayers.Control.EditingToolbar(layer2);
+            map.addControl(panel2);
+
+            map.setCenter(new OpenLayers.LonLat(lon, lat), zoom);
+        }
+    </script>
+  </head>
+  <body onload="init()">
+    <h1 id="title">Two Toolbars</h1>
+    <div id="tags">
+        navigation toolbar, editing toolbar, basic
+    </div>
+    <p id="shortdesc">
+       Demo the NavToolbar, a subclass of Control.Panel which shows icons for
+       navigation.
+    </p> 
+    <div id="map" class="smallmap"></div>
+  </body>
+</html>
