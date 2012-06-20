@@ -89,14 +89,14 @@
         navigation toolbar, editing toolbar, basic
     </div>
     <p id="shortdesc">
-       Click the colored buttons in the lower left and right corners.
+       Click the colored buttons from left to right.
        On a desktop browser, they behave as expected.
-       On an iOS device, clicking the blue button immediately after
-       a red button shows the alert, "red button clicked!".  This indicates
-       that the wrong button's trigger() method is being called.  Since the
-       buttons are in two different panels, it's probaby not a bug in the
-       Panel code.  Rather, it's probably a bug somewhere in
-       OpenLayers/Events/buttonclick.js having to do with touch events.
+       On an iOS device, due to a missing "delete this.startEvt" in
+       buttonclick.js, clicking the second button immediately after the first
+       will cause the buttonclick event to be delivered to the first button,
+       displaying the message "first red button clicked!"  These buttons are in
+       the same panel; the blue button, which is in is own panel, behaves
+       similarly.
     </p> 
     <div id="map" class="smallmap"></div>
   </body>
