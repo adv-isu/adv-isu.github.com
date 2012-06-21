@@ -1,60 +1,15 @@
 <!DOCTYPE html>
 <html>
-    <head>
-        <title>OpenLayers Mobile Drawing</title>
-        <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
-        <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0">
-        <meta name="apple-mobile-web-app-capable" content="yes">
-        <link rel="stylesheet" href="http://www.openlayers.org/dev/theme/default/style.css" type="text/css">
-        <link rel="stylesheet" href="http://www.openlayers.org/dev/theme/default/style.mobile.css" type="text/css">
-        <script src="http://www.openlayers.org/dev/OpenLayers.mobile.js"></script>
-        <script src="mobile-drawing.js"></script>
-        <style>
-            html, body {
-                margin: 0;
-                padding: 0;
-                height: 100%;
-            }
-            #map1, #map2 {
-                float: left;
-                width: 40%;
-                height: 100%;
-            }
-            #map2 {
-                border-left: 1px solid gray;   
-            }
-            #title, #tags, #shortdesc {
-                display: none;
-            }
-            
-            /* Shut off tile animations and transforms for map 2 */
-            
-            #map2 .olLayerGrid .olTileImage {
-                -webkit-transition: none;
-                -moz-transition: none;
-                -o-transition: all 0 none;
-                transition: none;
-            }
-            @media (-webkit-transform-3d) {
-                #map2 img.olTileImage {
-                    -webkit-transform: none;
-                }
-            }
-            
-        </style>
-    </head>
-    <body>
-        <h1 id="title">Mobile Drawing Example</h1>
-        <div id="tags">
-            mobile, drawing
-        </div>
-        <p id="shortdesc">
-            A full-screen map with drawing tools for mobile devices.
-        </p>
-        <div id="map1"></div>
-        <div id="map2"></div>
-        <script>
-            init();
-        </script>
-    </body>
+  <head>
+    <title>OpenLayers Freehand Drawing Examples</title>
+  </head>
+
+  <body>
+    <h1>OpenLayers Freehand Drawing Examples</h1>
+    <ul>
+      <li><a href="withWebkitTransform.html">With Webkit Transform</a></li>
+      <li><a href="withoutWebkitTransform.html">Without Webkit Transform</a></li>
+    </ul>
+  </body>
 </html>
+
