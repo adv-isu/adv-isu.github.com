@@ -23,9 +23,6 @@
             #map2 {
                 border-left: 1px solid gray;   
             }
-            #map2 img.olTileImage {
-              -webkit-transform: none;
-            }
             .olControlAttribution {
                 font-size: 10px;
                 bottom: 5px;
@@ -40,6 +37,22 @@
             #title, #tags, #shortdesc {
                 display: none;
             }
+            
+            /* Shut off tile animations and transforms for map 2 */
+            
+            #map2 .olLayerGrid .olTileImage {
+                -webkit-transition: none;
+                -moz-transition: none;
+                -o-transition: all 0 none;
+                transition: none;
+            }
+            @media (-webkit-transform-3d) {
+                #map2 img.olTileImage {
+                    -webkit-transform: none;
+                }
+            }
+            
+            
         </style>
     </head>
     <body>
